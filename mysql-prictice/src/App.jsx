@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
 
-function App() {
-  const [count, setCount] = useState(0)
 
+export default function App() {
+    const { register, reset, formState : { errors}, handleSubmit } = useForm();
+
+    const submit = async (data) => {
+      console.log(data);
+      
+    }
+  
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <form onSubmit={handleSubmit(submit)} className="flex flex-col justify-self-center pt-7 pb-5">
+        <div className=" flex-col flex mt-6 w-max h-m justify-self-center">
+          <label className="font-[Arial] text-[20px] mb-1" >username</label>
+          <input type="text" className="font-[Arial] text-[16px] px-3 w-70 h-9 border-none bg-[#cccc]"  />
+        </div>
+        <div className=" flex-col flex mt-6 w-max h-m justify-self-center">
+          <label className="font-[Arial] text-[20px] mb-1" >email</label>
+          <input type="text" className="font-[Arial] text-[16px] px-3 w-70 h-9 border-none bg-[#cccc]"  />
+        </div>
+        <div className=" flex-col flex mt-6 w-max h-m justify-self-center">
+          <label className="font-[Arial] text-[20px] mb-1" >password</label>
+          <input type="text" className="font-[Arial] text-[16px] px-3 w-70 h-9 border-none bg-[#cccc]"  />
+        </div>
+        <button type="submit" className="bg-[darkblue] py-2 text-white font-bold font-[Arial] text-[20px] mt-7">Register</button>
+      </form>
     </>
   )
 }
-
-export default App
